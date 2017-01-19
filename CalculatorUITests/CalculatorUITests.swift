@@ -31,6 +31,14 @@ class CalculatorUITests: XCTestCase {
     func testExample() {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let app = XCUIApplication()
+        app.buttons["0"].tap()
+        app.buttons["."].tap()
+        app.buttons["1"].tap()
+        app.buttons["+"].tap()
+        app.buttons["2"].tap()
+        app.buttons["="].tap()
+//        print(ViewController.display.text)
     }
     
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4011529C1E2440AE0022FBD7 /* CalculatorBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4011529B1E2440AE0022FBD7 /* CalculatorBrain.swift */; };
 		40E6DECA1E2408D1001283A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E6DEC91E2408D1001283A8 /* AppDelegate.swift */; };
 		40E6DECC1E2408D1001283A8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E6DECB1E2408D1001283A8 /* ViewController.swift */; };
 		40E6DECF1E2408D1001283A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40E6DECD1E2408D1001283A8 /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4011529B1E2440AE0022FBD7 /* CalculatorBrain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorBrain.swift; sourceTree = "<group>"; };
 		40E6DEC61E2408D1001283A8 /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40E6DEC91E2408D1001283A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40E6DECB1E2408D1001283A8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -97,12 +99,10 @@
 		40E6DEC81E2408D1001283A8 /* Calculator */ = {
 			isa = PBXGroup;
 			children = (
-				40E6DEC91E2408D1001283A8 /* AppDelegate.swift */,
 				40E6DECB1E2408D1001283A8 /* ViewController.swift */,
 				40E6DECD1E2408D1001283A8 /* Main.storyboard */,
-				40E6DED01E2408D1001283A8 /* Assets.xcassets */,
-				40E6DED21E2408D1001283A8 /* LaunchScreen.storyboard */,
-				40E6DED51E2408D1001283A8 /* Info.plist */,
+				4011529B1E2440AE0022FBD7 /* CalculatorBrain.swift */,
+				40E6DEF71E2409FB001283A8 /* Supporting Files */,
 			);
 			path = Calculator;
 			sourceTree = "<group>";
@@ -123,6 +123,17 @@
 				40E6DEEB1E2408D1001283A8 /* Info.plist */,
 			);
 			path = CalculatorUITests;
+			sourceTree = "<group>";
+		};
+		40E6DEF71E2409FB001283A8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				40E6DEC91E2408D1001283A8 /* AppDelegate.swift */,
+				40E6DED01E2408D1001283A8 /* Assets.xcassets */,
+				40E6DED21E2408D1001283A8 /* LaunchScreen.storyboard */,
+				40E6DED51E2408D1001283A8 /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -188,11 +199,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Riyad Shauk";
 				TargetAttributes = {
 					40E6DEC51E2408D0001283A8 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = M3985Y384Q;
 						ProvisioningStyle = Automatic;
 					};
 					40E6DED91E2408D1001283A8 = {
@@ -259,6 +271,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4011529C1E2440AE0022FBD7 /* CalculatorBrain.swift in Sources */,
 				40E6DECC1E2408D1001283A8 /* ViewController.swift in Sources */,
 				40E6DECA1E2408D1001283A8 /* AppDelegate.swift in Sources */,
 			);
@@ -333,6 +346,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -383,6 +397,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -412,6 +427,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = M3985Y384Q;
 				INFOPLIST_FILE = Calculator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.riyad.Calculator;
@@ -424,6 +440,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = M3985Y384Q;
 				INFOPLIST_FILE = Calculator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.riyad.Calculator;
@@ -505,6 +522,7 @@
 				40E6DEF01E2408D1001283A8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		40E6DEF11E2408D1001283A8 /* Build configuration list for PBXNativeTarget "CalculatorTests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +531,7 @@
 				40E6DEF31E2408D1001283A8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		40E6DEF41E2408D1001283A8 /* Build configuration list for PBXNativeTarget "CalculatorUITests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +540,7 @@
 				40E6DEF61E2408D1001283A8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
