@@ -1,8 +1,4 @@
-I decided to learn a bit of Swift toward the end of my winter vacation, so this is an initial version of a calculator I programmed while following along with Stanford's CS 193p iOS course in Swift (programmed in a Swift 3 environment).
-
-@TODO Simplify the codebase (CalculatorBrain and ViewController to be less complex, less coupled, and more modular, elminiating the use of some flags which add complications)
-
-@TODO While refactoring, ensure my regressional tests don't fail, and add more tests as I notice issues (test-driven refactoring : P).
+I decided to learn a bit of Swift toward the end of my winter vacation, so this is an initial version of a calculator I programmed while following along with Stanford's CS 193p iOS course in Swift (programmed in a Swift 3 environment). It tests the model in several weird edge cases, though there're likely several more potential bugs from weird scenarios.
 
 @TODO Implement the functionality of a the few operations I put in my Main.storyboard with the intention of implementing some time in the future.
 
