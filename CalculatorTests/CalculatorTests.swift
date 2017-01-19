@@ -210,6 +210,41 @@ class CalculatorTests: XCTestCase {
         XCTAssertEqual(brain.description, "π", "testBrainMultipleConsecutiveConstantOperations")
     }
     
+    func testBrain5Prime() {
+        let brain = calculatorBrain()
+        brain.setOperand(operand: 5.0)
+        brain.performOperation(symbol: "p?")
+        XCTAssertEqual(brain.result, 1.0, "testBrain5Prime")
+        XCTAssertEqual(brain.description, "p?(5)", "testBrain5Prime")
+    }
+    
+    func testBrain5Plus1NotPrime() {
+        let brain = calculatorBrain()
+        brain.setOperand(operand: 5.0)
+        brain.performOperation(symbol: "+")
+        brain.setOperand(operand: 1.0)
+        brain.performOperation(symbol: "=")
+        brain.performOperation(symbol: "p?")
+        XCTAssertEqual(brain.result, 0.0, "testBrain5Plus1NotPrime")
+        XCTAssertEqual(brain.description, "p?(5+1)", "testBrain5Plus1NotPrime")
+    }
+    
+    func testBrainUnaryOperationsOnWeirdInput() {
+        let brain = calculatorBrain()
+        brain.performOperation(symbol: "√")
+        XCTAssertEqual(brain.result, 0.0, "testBrainUnaryOperationsOnWeirdInput")
+        XCTAssertEqual(brain.description, "√(0)", "testBrainUnaryOperationsOnWeirdInput")
+        brain.performOperation(symbol: "c")
+        brain.performOperation(symbol: "p?")
+        XCTAssertEqual(brain.result, 0.0, "testBrainUnaryOperationsOnWeirdInput")
+        XCTAssertEqual(brain.description, "p?(0)", "testBrainUnaryOperationsOnWeirdInput")
+        brain.performOperation(symbol: "c")
+        brain.setOperand(operand: 3.0)
+        brain.performOperation(symbol: "p?")
+        XCTAssertEqual(brain.result, 1.0, "testBrainUnaryOperationsOnWeirdInput")
+        XCTAssertEqual(brain.description, "p?(3)", "testBrainUnaryOperationsOnWeirdInput")
+    }
+    
     /* NOTE: As of when the backspace tests were attempted, backspace was only implemented on the ViewController layer (from the controller), so the public CalculatorBrain API can't access the actual view... Hence, the attempted tests, below, are commented out for now. */
     
 //    func testBrainBackspaceWithNumberLeftover() {

@@ -6,7 +6,6 @@
 //  Copyright © 2017 Riyad Shauk. All rights reserved.
 //  Code taken largely from Stanford's CS 193p Swift Programming course; I programmed and commented this while going through the tutorials.
 //  FYI: This is meant to be viewed in Xcode, as Xcode automatically line-wraps (in case you were wondering about the very long comments).
-//
 
 import Foundation
 import GameKit // for random-number generation with seeding
@@ -43,6 +42,13 @@ private func isPrime(n: Double) -> Double {
     }
     return 1
 }
+var isModulus = false
+private func modulo(op1: Double, op2: Double) -> Double {
+    isModulus = true
+    return op1.truncatingRemainder(dividingBy: op2)
+}
+
+//private typealias Modulo = (Double, Double) -> Double
 
 private func rand() -> Double {
     // see http://stackoverflow.com/questions/38679670/swift-seeding-arc4random-uniform-or-alternative?rq=1
@@ -50,14 +56,12 @@ private func rand() -> Double {
     let time = Int(NSDate().timeIntervalSinceReferenceDate) // see http://stackoverflow.com/questions/25895081/how-does-one-seed-the-random-number-generator-in-swift
     rs.seed = UInt64(Int(arc4random_uniform(UInt32(time))))
     let rd = GKRandomDistribution(randomSource: rs, lowestValue: 0, highestValue: 1000)
-    print(rs.seed)
-    print(rd.nextUniform())
     return Double(rd.nextUniform())
 }
 
 struct Stack<Element> {
     private var items = [Element]()
-    private var itemCount = 0
+    var itemCount = 0
     mutating func push(_ item: Element) {
         itemCount += 1
         items.append(item)
@@ -129,7 +133,7 @@ class calculatorBrain {
         // Celcius / Fahrenheit
         // k/h / mi/h
         // grams / ounces
-        "mod" : Operation.BinaryOperation({ $0.truncatingRemainder(dividingBy: $1) }),
+        "mod" : Operation.BinaryOperation(modulo),
         "del" : Operation.VoidOperation({}),
         "p?" : Operation.UnaryOperation(isPrime),
         "C -> F" : Operation.UnaryOperation({ $0 * 1.8 + 32 }),
@@ -199,6 +203,9 @@ class calculatorBrain {
                 acc = value
                 nonScalarOperationMustFollowToKeepCurCalculationActive = true
             case .UnaryOperation(let f):
+                if !lastButtonWasADigit && (operationsStack.itemCount == 0 || operationsStack.itemCount == 1) {
+                    description = "0"
+                }
                 if !isPartialResult {
                     description = symbol + "(" + description + ")"
                 } else {
@@ -225,6 +232,10 @@ class calculatorBrain {
                 if !lastButtonWasADigit {
                     switch lastSymbol {
                     case .BinaryOperation(_):
+                        var offset = 1
+                        if isModulus {
+                            offset = 3
+                        }
                         switch operation {
                         case .VoidDoubleOperation(_):
                             isPartialResult = false
@@ -234,7 +245,7 @@ class calculatorBrain {
                             break
                         default:
                             // i.e.: "7+= --> 7+7=14", "7++1 --> 7+7+1=15"
-                            description = description + String(description.characters.dropLast(1))
+                            description = description + String(description.characters.dropLast(offset))
                         }
                     default:
                         break
@@ -248,6 +259,7 @@ class calculatorBrain {
             operationsStack.push(operation)
         }
         lastButtonWasADigit = false
+        isModulus = false
     }
     
     /* If there was a pending binary operation (one that could not be complete because the second operand was not available), then apply the binary function using the first operand (previously entered) and the current acc (which may have been set just before the user touched a symbol, as seen in ViewController.performOperation when brain.setOperand is called) as the second operand. */
