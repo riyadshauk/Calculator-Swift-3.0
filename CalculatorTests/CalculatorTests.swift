@@ -42,8 +42,8 @@ class CalculatorTests: XCTestCase {
         let brain = calculatorBrain()
         brain.setOperand(operand: 7.0)
         brain.performOperation(symbol: "+")
-        assert(brain.description == "7+")
-        assert(brain.result == 7.0)
+        XCTAssertEqual(brain.description, "7+", "testBrain7Plus")
+        XCTAssertEqual(brain.result, 7.0, "testBrain7Plus")
     }
     
     func testBrain7Plus9() {
@@ -51,8 +51,8 @@ class CalculatorTests: XCTestCase {
         brain.setOperand(operand: 7.0)
         brain.performOperation(symbol: "+")
         brain.setOperand(operand: 9.0)
-        assert(brain.lastDescription == "7+")
-        assert(brain.result == 9.0)
+        XCTAssertEqual(brain.lastDescription, "7+", "testBrain7Plus9")
+        XCTAssertEqual(brain.result, 9.0, "testBrain7Plus9")
     }
     
     func testBrain7Plus9Equals() {
@@ -61,8 +61,8 @@ class CalculatorTests: XCTestCase {
         brain.performOperation(symbol: "+")
         brain.setOperand(operand: 9.0)
         brain.performOperation(symbol: "=")
-        assert(brain.description == "7+9")
-        assert(brain.result == 16.0)
+        XCTAssertEqual(brain.description, "7+9", "testBrain7Plus9Equals")
+        XCTAssertEqual(brain.result, 16.0, "testBrain7Plus9Equals")
     }
     
     func testBrain7Plus9EqualsSqrt() {
@@ -72,8 +72,8 @@ class CalculatorTests: XCTestCase {
         brain.setOperand(operand: 9.0)
         brain.performOperation(symbol: "=")
         brain.performOperation(symbol: "√")
-        assert(brain.description == "√(7+9)")
-        assert(brain.result == 4.0)
+        XCTAssertEqual(brain.description, "√(7+9)", "testBrain7Plus9EqualsSqrt")
+        XCTAssertEqual(brain.result, 4.0, "testBrain7Plus9EqualsSqrt")
     }
     
     func testBrain7Plus9Sqrt() {
@@ -82,8 +82,8 @@ class CalculatorTests: XCTestCase {
         brain.performOperation(symbol: "+")
         brain.setOperand(operand: 9.0)
         brain.performOperation(symbol: "√")
-        assert(brain.description == "7+√(9)")
-        assert(brain.result == 3.0)
+        XCTAssertEqual(brain.description, "7+√(9)", "testBrain7Plus9Sqrt")
+        XCTAssertEqual(brain.result, 3.0, "testBrain7Plus9Sqrt")
     }
     
     func testBrain7Plus9SqrtEquals() {
@@ -93,8 +93,8 @@ class CalculatorTests: XCTestCase {
         brain.setOperand(operand: 9.0)
         brain.performOperation(symbol: "√")
         brain.performOperation(symbol: "=")
-        assert(brain.description == "7+√(9)")
-        assert(brain.result == 10.0)
+        XCTAssertEqual(brain.description, "7+√(9)", "testBrain7Plus9SqrtEquals")
+        XCTAssertEqual(brain.result, 10.0, "testBrain7Plus9SqrtEquals")
     }
     
     func testBrain7Plus9EqualsPlus6Plus3Equals() {
@@ -108,8 +108,8 @@ class CalculatorTests: XCTestCase {
         brain.performOperation(symbol: "+")
         brain.setOperand(operand: 3.0)
         brain.performOperation(symbol: "=")
-        assert(brain.description == "7+9+6+3")
-        assert(brain.result == 25.0)
+        XCTAssertEqual(brain.description, "7+9+6+3", "testBrain7Plus9EqualsPlus6Plus3Equals")
+        XCTAssertEqual(brain.result, 25.0, "testBrain7Plus9EqualsPlus6Plus3Equals")
     }
     
     func testBrain7Plus9EqualsSqrt6Plus3Equals() {
@@ -123,8 +123,8 @@ class CalculatorTests: XCTestCase {
         brain.performOperation(symbol: "+")
         brain.setOperand(operand: 3.0)
         brain.performOperation(symbol: "=")
-        assert(brain.description == "6+3")
-        assert(brain.result == 9.0)
+        XCTAssertEqual(brain.description, "6+3", "testBrain7Plus9EqualsSqrt6Plus3Equals")
+        XCTAssertEqual(brain.result, 9.0, "testBrain7Plus9EqualsSqrt6Plus3Equals")
     }
     
     func testBrain5Plus6Equals73() {
@@ -134,27 +134,29 @@ class CalculatorTests: XCTestCase {
         brain.setOperand(operand: 6.0)
         brain.performOperation(symbol: "=")
         brain.setOperand(operand: 73.0)
-        assert(brain.lastDescription == "5+6")
-        assert(brain.result == 73.0)
+        XCTAssertEqual(brain.lastDescription, "5+6", "testBrain5Plus6Equals73")
+        XCTAssertEqual(brain.result, 73.0, "testBrain5Plus6Equals73")
     }
     
-    func testBrain7PlusEquals() {
+    func testBrain7PlusEqualsPlusEquals() {
         let brain = calculatorBrain()
         brain.setOperand(operand: 7.0)
         brain.performOperation(symbol: "+")
         brain.performOperation(symbol: "=")
-        assert(brain.description == "7+7")
-        assert(brain.result == 14.0)
+        brain.performOperation(symbol: "+")
+        brain.performOperation(symbol: "=")
+        XCTAssertEqual(brain.description, "7+7+7+7", "testBrain7PlusEqualsPlusEquals")
+        XCTAssertEqual(brain.result, 28.0, "testBrain7PlusEqualsPlusEquals")
     }
     
-    func testBrain7TimesPiEquals() {
+    func testBrain4TimesPiEquals() {
         let brain = calculatorBrain()
         brain.setOperand(operand: 4.0)
         brain.performOperation(symbol: "×")
         brain.performOperation(symbol: "π") // (π is an Operation.Constant)
         brain.performOperation(symbol: "=")
-        assert(brain.description == "4×π")
-        assert(brain.result == 12.566370614359172)
+        XCTAssertEqual(brain.description, "4×π", "testBrain4TimesPiEquals")
+        XCTAssertEqual(brain.result, 12.566370614359172, "testBrain4TimesPiEquals")
     }
     
     func testBrain4Plus5Times3() {
@@ -165,8 +167,8 @@ class CalculatorTests: XCTestCase {
         brain.performOperation(symbol: "×")
         brain.setOperand(operand: 3.0)
         brain.performOperation(symbol: "=")
-        assert(brain.description == "4+5×3")
-        assert(brain.result == 27.0)
+        XCTAssertEqual(brain.description, "4+5×3", "testBrain4Plus5Times3")
+        XCTAssertEqual(brain.result, 27.0, "testBrain4Plus5Times3")
     }
     
     func testBrainCAfterOperation() {
@@ -174,10 +176,10 @@ class CalculatorTests: XCTestCase {
         brain.setOperand(operand: 4.0)
         brain.performOperation(symbol: "+")
         brain.setOperand(operand: 5.0)
-        brain.performOperation(symbol: "=")
+        brain.performOperation(symbol: "+")
         brain.performOperation(symbol: "c")
-        assert(brain.description == "")
-        assert(brain.result == 0.0)
+        XCTAssertEqual(brain.description, "", "testBrainCAfterOperation")
+        XCTAssertEqual(brain.result, 0.0, "testBrainCAfterOperation")
     }
     
     func testBrainCWhileUserIsTyping() {
@@ -186,8 +188,8 @@ class CalculatorTests: XCTestCase {
         brain.performOperation(symbol: "+")
         brain.setOperand(operand: 5.0)
         brain.performOperation(symbol: "c")
-        assert(brain.description == "")
-        assert(brain.result == 0.0)
+        XCTAssertEqual(brain.description, "", "testBrainCWhileUserIsTyping")
+        XCTAssertEqual(brain.result, 0.0, "testBrainCWhileUserIsTyping")
     }
     
     func testBrainRand() {
@@ -196,16 +198,16 @@ class CalculatorTests: XCTestCase {
         let r1 = brain.result
         brain.performOperation(symbol: "rand")
         let r2 = brain.result
-        XCTAssertNotEqual(r1, r2)
-        XCTAssert(brain.description == "rand")
+        XCTAssertNotEqual(r1, r2, "testBrainRand")
+        XCTAssertEqual(brain.description, "rand", "testBrainRand")
     }
     
     func testBrainMultipleConsecutiveConstantOperations() {
         let brain = calculatorBrain()
         brain.performOperation(symbol: "π")
         brain.performOperation(symbol: "π")
-        XCTAssertEqual(brain.result, 3.1415926535897931)
-        XCTAssertEqual(brain.description, "π")
+        XCTAssertEqual(brain.result, 3.1415926535897931, "testBrainMultipleConsecutiveConstantOperations")
+        XCTAssertEqual(brain.description, "π", "testBrainMultipleConsecutiveConstantOperations")
     }
     
     /* NOTE: As of when the backspace tests were attempted, backspace was only implemented on the ViewController layer (from the controller), so the public CalculatorBrain API can't access the actual view... Hence, the attempted tests, below, are commented out for now. */

@@ -246,7 +246,6 @@ class calculatorBrain {
                 descriptionUpdated = true
             }
             operationsStack.push(operation)
-            print(description)
         }
         lastButtonWasADigit = false
     }
