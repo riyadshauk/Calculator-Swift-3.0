@@ -4,8 +4,8 @@
 //
 //  Created by Riyad Shauk on 1/9/17.
 //  Copyright © 2017 Riyad Shauk. All rights reserved.
-//  NOTE: Most of these test-cases were written using the English test-cases for a calculator app provided in Assignment 1 of Stanford's CS 193p iOS/Swift programming course (the PDF can be found on iTunesU).
-//  I added a few more tests (i.e.: testBrainCAfterOperation, testBrainCWhileUserIsTyping, testBrainRand, testBrainMultipleConsecutiveConstantOperations).
+//  NOTE: 12 of these test-cases were written using the English test-cases for a calculator app provided in Assignment 1 of Stanford's CS 193p iOS/Swift programming course (the PDF can be found on iTunesU).
+//  I added a few more tests.
 //  These tests to the CalculatorBrain should serve as regressional tests.
 //  @TODO refactor simplifying (make: more concise, less coupled, more direct) the CalculatorBrain and ViewController without breaking the main functionalities.
 //
@@ -243,6 +243,21 @@ class CalculatorTests: XCTestCase {
         brain.performOperation(symbol: "p?")
         XCTAssertEqual(brain.result, 1.0, "testBrainUnaryOperationsOnWeirdInput")
         XCTAssertEqual(brain.description, "p?(3)", "testBrainUnaryOperationsOnWeirdInput")
+    }
+    
+    func testBrainPerformNonExistentOperation() {
+        let brain = calculatorBrain()
+        brain.performOperation(symbol: "IDon'tExist")
+        XCTAssertEqual(brain.description, "", "testBrainPerformNonExistentOperation")
+        XCTAssertEqual(brain.result, 0.0, "testBrainPerformNonExistentOperation")
+    }
+    
+    func testBrainPlusEquals() {
+        let brain = calculatorBrain()
+        brain.performOperation(symbol: "+")
+        brain.performOperation(symbol: "=")
+        XCTAssertEqual(brain.description, "0+0", "testBrainPlusEquals")
+        XCTAssertEqual(brain.result, 0.0, "testBrainPlusEquals")
     }
     
     /* NOTE: As of when the backspace tests were attempted, backspace was only implemented on the ViewController layer (from the controller), so the public CalculatorBrain API can't access the actual view... Hence, the attempted tests, below, are commented out for now. */

@@ -172,12 +172,17 @@ class calculatorBrain {
         case Equals
     }
     
+    var operationNotRecognized = false
     private var operationsStack = Stack<Operation>()
     
     /* takes an operand, stuff happens, and acc is updated. This is an API to be called from the controller. */
     func performOperation(symbol: String) {
         /* if the symbol maps to a functionality, in the operations dict... */
         if let operation = operations[symbol] {
+            if description == "" { // should set description to "0"
+                description = doubleToString(d: acc)
+            }
+            operationNotRecognized = false
             if nonScalarOperationMustFollowToKeepCurCalculationActive {
                 switch operation {
                 case .VoidDoubleOperation(_):
@@ -257,6 +262,8 @@ class calculatorBrain {
                 descriptionUpdated = true
             }
             operationsStack.push(operation)
+        } else {
+            operationNotRecognized = true
         }
         lastButtonWasADigit = false
         isModulus = false

@@ -6,6 +6,6 @@ I decided to learn a bit of Swift toward the end of my winter vacation, so this 
 
 I made this calculator app for fun while learning Swift 3, and hope it is of some use (of what to do or not do) later on down the road for others or myself! : )
 
-![Screenshot of Swift 3 Calculator on iOS 10](calculator_screenshot.png?raw=true "Screenshot of Swift 3 Calculator on iOS 10")
+<img src="calculator_screenshot.png" alt="Screenshot of Swift 3 Calculator on iOS 10" width="50%" height="50%">
 
 Feel free to open up the project in Xcode and simply press the play-button near the top-left of the window to just play around with the calculator app in a simulator : )

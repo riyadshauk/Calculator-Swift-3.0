@@ -135,7 +135,7 @@ class ViewController: UIViewController {
         }
         if brain.isPartialResult {
             descriptionOfOperations.text = "history: " + brain.description + "..."
-        } else if operation != "del" {
+        } else if operation != "del" && !brain.operationNotRecognized {
             descriptionOfOperations.text = "history: " + brain.description + " = "
         }
         if operation! == "c" {
