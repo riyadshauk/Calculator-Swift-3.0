@@ -200,6 +200,10 @@ class CalculatorTests: XCTestCase {
         let r2 = brain.result
         XCTAssertNotEqual(r1, r2, "testBrainRand")
         XCTAssertEqual(brain.description, "rand", "testBrainRand")
+        XCTAssertLessThan(r1, 1)
+        XCTAssertGreaterThan(r1, 0)
+        XCTAssertLessThan(r2, 1)
+        XCTAssertGreaterThan(r2, 0)
     }
     
     func testBrainMultipleConsecutiveConstantOperations() {
@@ -258,6 +262,24 @@ class CalculatorTests: XCTestCase {
         brain.performOperation(symbol: "=")
         XCTAssertEqual(brain.description, "0+0", "testBrainPlusEquals")
         XCTAssertEqual(brain.result, 0.0, "testBrainPlusEquals")
+    }
+    
+    func testBrainDigitBeforeVoidDoubleOperation() {
+        let brain = calculatorBrain()
+        brain.performOperation(symbol: "rand")
+        XCTAssertEqual(brain.description, "rand", "testBrainDigitBeforeVoidDoubleOperation")
+        brain.setOperand(operand: 1.0)
+        brain.performOperation(symbol: "rand")
+        XCTAssertEqual(brain.description, "rand", "testBrainDigitBeforeVoidDoubleOperation")
+    }
+    
+    func testBrainDigitBeforeConstantOperation() {
+        let brain = calculatorBrain()
+        brain.performOperation(symbol: "π")
+        XCTAssertEqual(brain.description, "π", "testBrainDigitBeforeConstantOperation")
+        brain.setOperand(operand: 1.0)
+        brain.performOperation(symbol: "π")
+        XCTAssertEqual(brain.description, "π", "testBrainDigitBeforeConstantOperation")
     }
     
     /* NOTE: As of when the backspace tests were attempted, backspace was only implemented on the ViewController layer (from the controller), so the public CalculatorBrain API can't access the actual view... Hence, the attempted tests, below, are commented out for now. */

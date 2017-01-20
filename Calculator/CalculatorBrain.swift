@@ -181,6 +181,7 @@ class calculatorBrain {
         if let operation = operations[symbol] {
             if description == "" { // should set description to "0"
                 description = doubleToString(d: acc)
+                lastButtonWasADigit = true
             }
             operationNotRecognized = false
             if nonScalarOperationMustFollowToKeepCurCalculationActive {
@@ -204,9 +205,17 @@ class calculatorBrain {
             case .VoidDoubleOperation(let f):
                 acc = f()
                 nonScalarOperationMustFollowToKeepCurCalculationActive = true
+                if lastButtonWasADigit {
+                    lastDescription = description
+                    description = ""
+                }
             case .Constant(let value):
                 acc = value
                 nonScalarOperationMustFollowToKeepCurCalculationActive = true
+                if lastButtonWasADigit {
+                    lastDescription = description
+                    description = ""
+                }
             case .UnaryOperation(let f):
                 if !lastButtonWasADigit && (operationsStack.itemCount == 0 || operationsStack.itemCount == 1) {
                     description = "0"
